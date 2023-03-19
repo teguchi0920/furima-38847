@@ -26,7 +26,7 @@ itemsテーブル
 | shipping_fee_id   | integer    | null: false                    |
 | shipping_from_id  | integer    | null: false                    |
 | days_to_ship_id   | integer    | null: false                    |
-| item_price        | string     | null: false                    |
+| item_price        | integer    | null: false                    |
 | user              | references | null: false, foreign_key: true |
 
 belongs_to :user
