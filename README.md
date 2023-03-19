@@ -17,17 +17,17 @@ has_many :orders
 
 itemsテーブル
 
-| Column         | Type       | Options                        |
-| -------------- | ---------- | ------------------------------ |
-| item_name      | string     | null: false                    |
-| item_info      | text       | null: false                    |
-| item_category  | integer    | null: false                    |
-| item_condition | integer    | null: false                    |
-| shipping_fee   | integer    | null: false                    |
-| shipping_from  | integer    | null: false                    |
-| days_to_ship   | integer    | null: false                    |
-| item_price     | string     | null: false                    |
-| user           | references | null: false, foreign_key: true |
+| Column            | Type       | Options                        |
+| ----------------- | ---------- | ------------------------------ |
+| item_name         | string     | null: false                    |
+| item_info         | text       | null: false                    |
+| item_category_id  | integer    | null: false                    |
+| item_condition_id | integer    | null: false                    |
+| shipping_fee_id   | integer    | null: false                    |
+| shipping_from_id  | integer    | null: false                    |
+| days_to_ship_id   | integer    | null: false                    |
+| item_price        | string     | null: false                    |
+| user              | references | null: false, foreign_key: true |
 
 belongs_to :user
 has_one :order
