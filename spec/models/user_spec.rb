@@ -4,7 +4,7 @@ RSpec.describe User, type: :model do
   before do
     @user = FactoryBot.build(:user)
   end
-
+  
   describe 'ユーザ新規登録' do
     context '新規登録できる場合'do
       it '必須項目を全て入力すれば登録できる' do
