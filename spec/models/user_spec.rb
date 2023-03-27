@@ -59,7 +59,7 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include('Password is invalid')
       end
-      it 'passwordとencrypted_passwordが一致しなければ登録できない' do
+      it 'passwordとpassword_confirmationが一致しなければ登録できない' do
         @user.password = 'a11111'
         @user.password_confirmation = 'b11111'
         @user.valid?
