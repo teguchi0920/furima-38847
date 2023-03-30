@@ -9,9 +9,15 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :days_to_ship
 
-  validates_presence_of :item_name, :item_info, :item_price
-  validates :item_category_id, :item_condition_id, :shipping_fee_id, :prefecture_id, :days_to_ship_id,
-   numericality: {other_than: 1, message: "can't be blank"}, 
-   presence: true
-
+  with_options presence: true do
+    validates :item_image
+    validates :item_name 
+    validates :item_info
+    validates :item_category_id,numericality: {other_than: 1, message: "can't be blank"}
+    validates :item_condition_id, numericality: {other_than: 1, message: "can't be blank"}
+    validates :shipping_fee_id, numericality: {other_than: 1, message: "can't be blank"}
+    validates :prefecture_id, numericality: {other_than: 1, message: "can't be blank"}
+    validates :days_to_ship_id, numericality: {other_than: 1, message: "can't be blank"}
+    validates :item_price, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
+  end
 end
