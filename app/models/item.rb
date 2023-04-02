@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :user
-  has_one_attached :item_image
+  has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :item_category
@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   belongs_to :days_to_ship
 
   with_options presence: true do
-    validates :item_image
+    validates :image
     validates :item_name, length: { maximum: 40 }
     validates :item_info, length: { maximum: 1000 }
     validates :item_category_id, numericality: { other_than: 1, message: "can't be blank" }
