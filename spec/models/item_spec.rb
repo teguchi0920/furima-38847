@@ -25,7 +25,7 @@ RSpec.describe Item, type: :model do
       it 'item_nameが41文字以上だと登録できない' do
         @item.item_name = Faker::Lorem.characters(number: 41)
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item name is too long (maximum is 40 characters)")
+        expect(@item.errors.full_messages).to include('Item name is too long (maximum is 40 characters)')
       end
       it 'item_infoが空だと登録できない' do
         @item.item_info = ''
@@ -35,7 +35,7 @@ RSpec.describe Item, type: :model do
       it 'item_infoが1,001文字以上だと登録できない' do
         @item.item_info = Faker::Lorem.characters(number: 1001)
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item info is too long (maximum is 1000 characters)")
+        expect(@item.errors.full_messages).to include('Item info is too long (maximum is 1000 characters)')
       end
       it 'item_category_idが1だと登録できない' do
         @item.item_category_id = 1
@@ -65,12 +65,12 @@ RSpec.describe Item, type: :model do
       it 'item_priceが299以下だと登録できない' do
         @item.item_price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item price must be greater than or equal to 300")
+        expect(@item.errors.full_messages).to include('Item price must be greater than or equal to 300')
       end
       it 'item_priceが10,000,000以上だと登録できない' do
-        @item.item_price = 10000000
+        @item.item_price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item price must be less than or equal to 9999999")
+        expect(@item.errors.full_messages).to include('Item price must be less than or equal to 9999999')
       end
     end
   end
