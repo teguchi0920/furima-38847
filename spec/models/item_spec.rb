@@ -62,6 +62,16 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Days to ship can't be blank")
       end
+      it 'item_priceが空だと登録できない' do
+        @item.item_price = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Item price can't be blank")
+      end
+      it 'item_priceに半角数字以外が含まれている場合は登録できない' do
+        @item.item_price = 'aAＡあ'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Item price is not a number")
+      end
       it 'item_priceが299以下だと登録できない' do
         @item.item_price = 299
         @item.valid?
@@ -71,6 +81,11 @@ RSpec.describe Item, type: :model do
         @item.item_price = 10_000_000
         @item.valid?
         expect(@item.errors.full_messages).to include('Item price must be less than or equal to 9999999')
+      end
+      it 'userが紐付いていなければ登録できない'do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
       end
     end
   end
