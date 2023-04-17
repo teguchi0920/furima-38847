@@ -8,5 +8,6 @@ FactoryBot.define do
     block { Faker::Address.street_address }
     building { Faker::Address.building_number}
     phone_number {Faker::Number.number(digits: rand(10..11))}
+    token {'tok_' + Faker::Alphanumeric.alphanumeric(number: 28)}
   end
 end
