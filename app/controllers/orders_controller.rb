@@ -4,6 +4,10 @@ class OrdersController < ApplicationController
   def index
     @order_address = OrderAddress.new
     @item = Item.includes(:user).find(params[:item_id])
+    @order = @item.order
+    if @order.present?
+      redirect_to root_path
+    end
   end
   
   def create
