@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
     @order_address = OrderAddress.new
     @item = Item.includes(:user).find(params[:item_id])
     @order = @item.order
-    if @order.present?
+    if @order.present? || current_user.id == @item.user_id
       redirect_to root_path
     end
   end
