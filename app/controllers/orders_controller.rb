@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: :index
+  before_action :set_order, only: [:index, :create]
 
   def index
     @order_address = OrderAddress.new
-    @item = Item.includes(:user).find(params[:item_id])
     @order = @item.order
     return unless @order.present? || current_user.id == @item.user_id
 
@@ -12,7 +12,6 @@ class OrdersController < ApplicationController
 
   def create
     @order_address = OrderAddress.new(order_params)
-    @item = Item.includes(:user).find(params[:item_id])
     if @order_address.valid?
       pay_item
       @order_address.save
@@ -37,5 +36,9 @@ class OrdersController < ApplicationController
       card: order_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def set_order
+    @item = Item.includes(:user).find(params[:item_id])
   end
 end
