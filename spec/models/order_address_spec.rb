@@ -12,6 +12,10 @@ RSpec.describe OrderAddress, type: :model do
       it '必須項目を全て入力すれば登録できる' do
         expect(@order).to be_valid
       end
+      it 'buildingが空でも登録できる' do
+        @order.building = ''
+        expect(@order).to be_valid
+      end
     end
     context '商品が購入できない場合' do
       it 'post_codeが空では登録できない' do
